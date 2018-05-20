@@ -1,76 +1,87 @@
 package sk.ness.interview.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.*;
 import sk.ness.interview.domain.Article;
+import sk.ness.interview.domain.Comment;
 import sk.ness.interview.dto.Author;
 import sk.ness.interview.dto.AuthorStats;
 import sk.ness.interview.service.ArticleService;
 import sk.ness.interview.service.AuthorService;
+import sk.ness.interview.service.CommentService;
+import sk.ness.interview.utils.Constants;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @Api
 @RestController
 public class BlogController {
 
-  @Resource
-  private ArticleService articleService;
+    @Resource
+    private ArticleService articleService;
 
-  @Resource
-  private AuthorService authorService;
+    @Resource
+    private AuthorService authorService;
 
-  // ~~ Article
+    @Resource
+    private CommentService commentService;
 
-  @RequestMapping(value = "articles", method = RequestMethod.GET)
-  public List<Article> getAllArticles() {
-    return this.articleService.findAll();
-  }
+    // ~~ Article
 
-  @RequestMapping(value = "articles/{articleId}", method = RequestMethod.GET)
-  public Article getArticle(@PathVariable final Integer articleId) {
-    Article article = articleService.findByID(articleId);
-//    List<CommentArticle> commentArticles = new ArrayList<>();
-//    CommentArticle commentArticle = new CommentArticle("Patrik Varga", "Comment", "Date String");
-//    commentArticles.add(commentArticle);
-//
-//    article.setComments(commentArticles);
-//    articleService.createArticle(article);
-//
-    article.setComment("Comment text");
-    return article;
-//    return this.articleService.findByID(articleId);
-  }
+    @RequestMapping(value = "articles", method = RequestMethod.GET)
+    public List<Article> getAllArticles() {
+        return this.articleService.findAll();
+    }
 
-  @RequestMapping(value = "articles/search/{searchText}", method = RequestMethod.GET)
-  public List<Article> searchArticle(@PathVariable final String searchText) {
-    throw new UnsupportedOperationException("Full text search not implemented.");
-  }
+    @RequestMapping(value = "articles/{articleId}", method = RequestMethod.GET)
+    public Article getArticle(@PathVariable final Integer articleId) {
+        return this.articleService.findByID(articleId);
+    }
 
-  @RequestMapping(value = "articles/add", method = RequestMethod.PUT)
-  public void addArticle(@RequestBody final Article article) {
-    this.articleService.createArticle(article);
-  }
+    @RequestMapping(value = "articles/search/{searchText}", method = RequestMethod.GET)
+    public List<Article> searchArticle(@PathVariable final String searchText) {
+        throw new UnsupportedOperationException("Full text search not implemented.");
+    }
 
-  // ~~ Author
+    @RequestMapping(value = "articles/add", method = RequestMethod.PUT)
+    public void addArticle(@RequestBody final Article article) {
+        this.articleService.createArticle(article);
+    }
 
-  @RequestMapping(value = "authors", method = RequestMethod.GET)
-  public List<Author> getAllAuthors() {
-    return this.authorService.findAll();
-  }
+    // ~~ Author
 
-  @RequestMapping(value = "authors/stats", method = RequestMethod.GET)
-  public List<AuthorStats> authorStats() {
-    throw new UnsupportedOperationException("Author statistics not implemented.");
-  }
+    @RequestMapping(value = "authors", method = RequestMethod.GET)
+    public List<Author> getAllAuthors() {
+        return this.authorService.findAll();
+    }
 
+    @RequestMapping(value = "authors/stats", method = RequestMethod.GET)
+    public List<AuthorStats> authorStats() {
+        throw new UnsupportedOperationException("Author statistics not implemented.");
+    }
+
+    //region Comment
+
+    @RequestMapping(value = Constants.API_GET_COMMENTS, method = RequestMethod.GET)
+    public List<Comment> getAllComments() {
+        return this.commentService.findAll();
+    }
+
+    @RequestMapping(value = Constants.API_GET_COMMENT_BY_ID, method = RequestMethod.GET)
+    public Comment getComment(@PathVariable final Integer commentId) {
+        return this.commentService.findById(commentId);
+    }
+
+    @RequestMapping(value = Constants.API_SEARCH_COMMENT, method = RequestMethod.GET)
+    public List<Comment> searchComment(@PathVariable final String searchText) {
+        throw new UnsupportedOperationException("Comment text search not implemented.");
+    }
+
+    @RequestMapping(value = Constants.API_ADD_COMMENT, method = RequestMethod.PUT)
+    public void addComment(@RequestBody final Comment comment) {
+        this.commentService.createComment(comment);
+    }
+
+    //endregion
 }
