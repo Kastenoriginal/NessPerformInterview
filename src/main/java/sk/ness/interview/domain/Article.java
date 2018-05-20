@@ -1,5 +1,7 @@
 package sk.ness.interview.domain;
 
+import sk.ness.interview.utils.Constants;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,7 +24,7 @@ public class Article {
   }
 
   @Id
-  @Column(name = "id", unique = true, nullable = false, precision = 10, scale = 0)
+  @Column(name = Constants.COLUMN_NAME_ID, unique = true, nullable = false, precision = 10, scale = 0)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "articles_seq_store")
   private Integer id;
 
@@ -38,9 +40,6 @@ public class Article {
   @Column(name = "create_timestamp")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTimestamp;
-
-  @Column(name = "comments", length = 1000)
-  private String comment;
 
   public Integer getId() {
     return this.id;
@@ -80,13 +79,5 @@ public class Article {
 
   public void setCreateTimestamp(final Date createTimestamp) {
     this.createTimestamp = createTimestamp;
-  }
-
-  public String getComment() {
-    return comment;
-  }
-
-  public void setComment(String comment) {
-    this.comment = comment;
   }
 }
