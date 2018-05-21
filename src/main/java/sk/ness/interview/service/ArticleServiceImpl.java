@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,6 +38,21 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void createArticle(final Article article) {
         this.articleDAO.persist(article);
+    }
+
+    @Override
+    public List<Article> getArticlesBysSearchText(String searchText) {
+        List<Article> allArticles = this.articleDAO.findAll();
+        List<Article> filteredArticles = new ArrayList<>();
+        for (Article article : allArticles) {
+            if (article.getAuthor().contains(searchText) ||
+                    article.getTitle().contains(searchText) ||
+                    article.getText().contains(searchText)) {
+                filteredArticles.add(article);
+            }
+        }
+
+        return filteredArticles;
     }
 
     @Override
