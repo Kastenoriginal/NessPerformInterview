@@ -1,18 +1,12 @@
 package sk.ness.interview.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sk.ness.interview.utils.Constants;
 
 import java.util.Date;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "articles")
@@ -40,6 +34,10 @@ public class Article {
   @Column(name = "create_timestamp")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTimestamp;
+
+  @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+  @JsonIgnore
+  private Set<Comment> comments;
 
   public Integer getId() {
     return this.id;
@@ -80,4 +78,12 @@ public class Article {
   public void setCreateTimestamp(final Date createTimestamp) {
     this.createTimestamp = createTimestamp;
   }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 }

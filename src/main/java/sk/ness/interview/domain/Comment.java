@@ -24,6 +24,10 @@ public class Comment {
     @Column(name = Constants.COLUMN_NAME_CREATE_TIMESTAMP)
     private Date createTimestamp;
 
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Article article;
+
     public Comment() {
         this.createTimestamp = new Date();
     }
@@ -58,5 +62,13 @@ public class Comment {
 
     public void setCreateTimestamp(Date createTimestamp) {
         this.createTimestamp = createTimestamp;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
     }
 }
