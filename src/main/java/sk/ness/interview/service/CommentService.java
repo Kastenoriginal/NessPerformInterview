@@ -14,7 +14,4 @@ public interface CommentService {
 
     /** Creates new {@link Comment} */
     void createComment(Comment comment);
-
-    /** Creates new {@link Comment Comments} by ingesting all articles from json */
-    void ingestComments(String jsonComments);
 }

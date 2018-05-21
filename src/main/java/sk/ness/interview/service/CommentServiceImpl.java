@@ -29,9 +29,4 @@ public class CommentServiceImpl implements CommentService {
     public void createComment(final Comment comment) {
         this.commentDAO.persist(comment);
     }
-
-    @Override
-    public void ingestComments(final String jsonComments) {
-        throw new UnsupportedOperationException("Comment ingesting not implemented.");
-    }
 }

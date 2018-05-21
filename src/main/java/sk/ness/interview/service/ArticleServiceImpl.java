@@ -1,11 +1,15 @@
 package sk.ness.interview.service;
 
+import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 import sk.ness.interview.dao.ArticleDAO;
 import sk.ness.interview.domain.Article;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,7 +41,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void ingestArticles(final String jsonArticles) {
-        throw new UnsupportedOperationException("Article ingesting not implemented.");
+        Gson gson = new Gson();
+        try {
+            Article[] articles = gson.fromJson(new FileReader("articles_to_ingest.txt"), Article[].class);
+            for (Article article : articles) {
+                createArticle(article);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
     }
 
 }
