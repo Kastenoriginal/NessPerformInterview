@@ -36,10 +36,10 @@ SET SCHEMA PUBLIC
 CREATE SEQUENCE PUBLIC.ARTICLE_SEQ AS INTEGER START WITH 1
 CREATE SEQUENCE PUBLIC.COMMENTS_SEQ AS INTEGER START WITH 1
 CREATE MEMORY TABLE PUBLIC.ARTICLES(ID INTEGER NOT NULL PRIMARY KEY,AUTHOR VARCHAR(250),CREATE_TIMESTAMP TIMESTAMP,TEXT VARCHAR(2000),TITLE VARCHAR(250),COMMENTS VARCHAR(1000))
-CREATE MEMORY TABLE PUBLIC.COMMENTS(ID VARCHAR(255) NOT NULL PRIMARY KEY,AUTHOR VARCHAR(50),CREATE_TIMESTAMP TIMESTAMP,TEXT VARCHAR(2000))
+CREATE MEMORY TABLE PUBLIC.COMMENTS(COMMENTID VARCHAR(255) NOT NULL PRIMARY KEY,AUTHOR VARCHAR(50),CREATE_TIMESTAMP TIMESTAMP,TEXT VARCHAR(2000))
 ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
-ALTER SEQUENCE PUBLIC.ARTICLE_SEQ RESTART WITH 14
-ALTER SEQUENCE PUBLIC.COMMENTS_SEQ RESTART WITH 4
+ALTER SEQUENCE PUBLIC.ARTICLE_SEQ RESTART WITH 17
+ALTER SEQUENCE PUBLIC.COMMENTS_SEQ RESTART WITH 13
 SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.SQL_IDENTIFIER TO PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
@@ -60,7 +60,4 @@ INSERT INTO ARTICLES VALUES(7,'Martin Fowler','2016-01-20 08:49:01.298000','Many
 INSERT INTO ARTICLES VALUES(8,'Greg Young','2016-01-20 08:49:55.111000','Hopefully over time you as a developer change your opinions. One thing I have drastically changed my opinion over time on is tooling. As many know I used to work heavily on a tool called mighty moose (still works and is OSS). One of the things I built into mighty moose was a pretty cool graphing feature I thought was the bees knees at the time that I built it. You can see it and alot of other cool features Svein and I built into it here: http://continuoustests.com','Your Tools Control You',NULL)
 INSERT INTO ARTICLES VALUES(9,'Greg Young','2016-01-20 08:50:19.754000','I had an interesting question when sitting with a client today. The Event Store supports internally role based security through ACLs they would prefer to use a claim based system with it. An interesting idea, is there a reasonably easy way to do this? Well yes but it requires a bit of coding around (would be a nice thing to have in a library somewhere *wink wink*). The general idea with claims based security is that something else will do the authentication and the application will act only on a series of claims that are given. In this particular example they want to control access to streams based upon claims about the user and to do it in a reasonably generic way.','Another Security Model',NULL)
 INSERT INTO ARTICLES VALUES(10,'Martin Fowler','2016-01-20 08:50:57.243000','A key part of the design and delivery approach I advocate is using automated regression tests as a bug-detection mechanism. This is vital both to reduce bugs and to enable refactoring. A common problem I\u2019ve run into is when test suites decay due to tests failing unpredictably. Therefore it\u2019s important to understand the common causes of this non-determinism: lack of isolation, asynchronous behavior, remote services, time, and resource leaks. Once you get the hang of why these are happening you are well on your way to fixing them and getting a regression suite you can rely on.','Eradicating Non-Determinism',NULL)
-INSERT INTO ARTICLES VALUES(11,'Patrik Varga','2018-05-20 13:40:57.546000','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et aliquam leo. Vestibulum vitae mi eget elit consequat convallis sit amet quis urna. Sed eget dictum odio. Nullam non scelerisque eros, vel pellentesque purus. Sed vel lacus cursus, laoreet odio quis, venenatis ipsum. Quisque in elit tempus, dictum augue ac, lacinia magna. Nullam maximus felis eu ultrices vulputate. Pellentesque semper ultrices neque vitae aliquam. Etiam ut neque finibus arcu sollicitudin tempor.','Lorem ipsum',NULL)
-INSERT INTO ARTICLES VALUES(12,'Patrik Varga','2018-05-20 14:35:13.505000','Some random Comment text','Hello Comment!',NULL)
-INSERT INTO ARTICLES VALUES(13,'Patrik Varga','2018-05-20 14:40:37.163000','Some random Comment text','Hello Comment!',NULL)
-INSERT INTO COMMENTS VALUES('3','Patrik Varga','2018-05-20 14:46:47.427000','Some random Comment text')
+INSERT INTO COMMENTS VALUES('12','2 - comment author','2018-05-21 13:20:05.388000','2 - comment text')

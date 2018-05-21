@@ -11,7 +11,7 @@ import java.util.Date;
 public class Comment {
 
     @Id
-    @Column(name = Constants.COLUMN_NAME_ID, unique = true, nullable = false, precision = Constants.COLUMN_PRECISION_10)
+    @Column(name = Constants.COLUMN_NAME_COMMENT_ID, unique = true, nullable = false, precision = Constants.COLUMN_PRECISION_10)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = Constants.COMMENTS_SEQUENCE_GENERATOR_NAME)
     private Integer id;
 

@@ -11,6 +11,7 @@ public class Constants {
     public static final int COLUMN_LENGTH_50 = 50;
     public static final int COLUMN_LENGTH_2000 = 2000;
     public static final String COLUMN_NAME_ID = "id";
+    public static final String COLUMN_NAME_COMMENT_ID = "commentId";
     public static final String COLUMN_NAME_AUTHOR = "author";
     public static final String COLUMN_NAME_TEXT = "text";
     public static final String COLUMN_NAME_CREATE_TIMESTAMP = "create_timestamp";
