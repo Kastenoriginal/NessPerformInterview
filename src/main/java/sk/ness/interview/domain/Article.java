@@ -9,8 +9,6 @@ import java.util.Set;
 @Entity
 @Table(name = "articles")
 @SequenceGenerator(name = "articles_seq_store", sequenceName = "article_seq", allocationSize = 1)
-//@NamedQuery(name = Constants.FIND_ARTICLES_WITH_COMMENTS, query = "select distinct a from Article a left join a.comments")
-@NamedQuery(name = Constants.FIND_ARTICLES_WITH_COMMENTS, query = "select a from Article a")
 public class Article {
 
     public Article() {

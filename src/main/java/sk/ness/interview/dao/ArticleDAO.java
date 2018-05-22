@@ -15,5 +15,5 @@ public interface ArticleDAO {
   /** Persists {@link Article} into the DB */
   void persist(Article article);
 
-  List findAllWithComments();
+  List<Article> findAllWithoutComments();
 }

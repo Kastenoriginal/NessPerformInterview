@@ -4,7 +4,6 @@ public class Constants {
 
     //region General constants
     public static final String NAME_SESSION_FACTORY = "sessionFactory";
-    public static final String FIND_ARTICLES_WITH_COMMENTS = "findArticlesWithComments";
     //endregion
 
     //region Table Columns

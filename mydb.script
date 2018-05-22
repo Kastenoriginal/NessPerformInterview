@@ -38,8 +38,8 @@ CREATE SEQUENCE PUBLIC.COMMENTS_SEQ AS INTEGER START WITH 1
 CREATE MEMORY TABLE PUBLIC.ARTICLES(ID INTEGER NOT NULL PRIMARY KEY,AUTHOR VARCHAR(250),CREATE_TIMESTAMP TIMESTAMP,TEXT VARCHAR(2000),TITLE VARCHAR(250),COMMENTS VARCHAR(1000))
 CREATE MEMORY TABLE PUBLIC.COMMENTS(COMMENTID VARCHAR(255) NOT NULL PRIMARY KEY,AUTHOR VARCHAR(50),CREATE_TIMESTAMP TIMESTAMP,TEXT VARCHAR(2000),ID INTEGER,ARTICLEID BIGINT,CONSTRAINT FK_I7KU4M8RC2XKTTL51C44KIG9X FOREIGN KEY(ID) REFERENCES PUBLIC.ARTICLES(ID),CONSTRAINT FK_6KM657BDF90RDN91PBG00DU2Q FOREIGN KEY(ARTICLEID) REFERENCES PUBLIC.ARTICLES(ID))
 ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 1
-ALTER SEQUENCE PUBLIC.ARTICLE_SEQ RESTART WITH 41
-ALTER SEQUENCE PUBLIC.COMMENTS_SEQ RESTART WITH 37
+ALTER SEQUENCE PUBLIC.ARTICLE_SEQ RESTART WITH 42
+ALTER SEQUENCE PUBLIC.COMMENTS_SEQ RESTART WITH 38
 SET DATABASE DEFAULT INITIAL SCHEMA PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.SQL_IDENTIFIER TO PUBLIC
 GRANT USAGE ON DOMAIN INFORMATION_SCHEMA.YES_OR_NO TO PUBLIC
@@ -64,6 +64,8 @@ INSERT INTO ARTICLES VALUES(23,'author','2018-05-21 13:44:21.521000','text','tit
 INSERT INTO ARTICLES VALUES(38,'Matt Lacey','2018-05-21 15:00:59.275000','After listening to a recent .Net Rocks show about Technical Debt I thought I''d share some tips I have on working with technical debt. I worry if ''Technical debt'' is just a label we put on things so we don''t have to think about them. e.g. ''We know this will create technical debt and we can come back to it at some point in the future.'' This doesn''t require that we do the best to mitigate the consequences of that debt now though.','5 Tips On Working With Technical Debt',NULL)
 INSERT INTO ARTICLES VALUES(39,'Ruth Avramovich','2018-05-21 15:00:59.275000','In this series of posts I am covering some of the many ways you can benefit from XpoLog and especially on how to get the most valuable information from your log4j event logs. By running the XpoLog Analytic Search on your log4j data, you can among other things measure your application performance and thread activity, measure code activity with class and method analytics on log4j, build security analysis, and make use of various visualization gadgets for maximum analysis. In this post I will show you how XpoLog can help you find errors in your Java code, which in turn will help you create better quality code. If you want to follow as you read along, you can download our software for free here.','One Small Error in Java Code, One Giant Leap for Java Code Quality',NULL)
 INSERT INTO ARTICLES VALUES(40,'Emil Forslund','2018-05-21 15:00:59.275000','One of the bigest features in Java 8 is the ability to stream over collections of objects. By adding the .stream()-method into the Collection interface, every collection in the java language is suddenly expanded with this new ability. Other data structures like the Map-interface, do not implement the method as they are not, strictly speaking, collections. In this article I will show you how Speedment Open Source streams efficiently over standard Java maps, expanding the Stream interface into something called a MapStream! This addition will make it easier to keep your streams concrete and readable even in complex scenarios. Hopefully this will allow you to keep streaming without prematurely collecting the result.','Extending the Stream API to Maps',NULL)
+INSERT INTO ARTICLES VALUES(41,'author','2018-05-22 03:22:01.217000','text','title',NULL)
 INSERT INTO COMMENTS VALUES('34','author','2018-05-21 18:48:57.693000','text',NULL,23)
 INSERT INTO COMMENTS VALUES('35','author','2018-05-21 18:49:24.537000','text',NULL,23)
 INSERT INTO COMMENTS VALUES('36','author','2018-05-21 18:58:55.510000','text',NULL,38)
+INSERT INTO COMMENTS VALUES('37','author','2018-05-22 03:23:41.949000','text',NULL,38)

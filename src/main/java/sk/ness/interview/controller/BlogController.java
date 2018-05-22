@@ -31,7 +31,8 @@ public class BlogController {
 
     @RequestMapping(value = "articles", method = RequestMethod.GET)
     public List<Article> getAllArticles() {
-        return this.articleService.findAllWithComments();
+//        return this.articleService.findAll();
+        return this.articleService.findAllWithoutComments();
     }
 
     @RequestMapping(value = "articles/{articleId}", method = RequestMethod.GET)
