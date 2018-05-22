@@ -34,6 +34,10 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> findAll() {
         return this.articleDAO.findAll();
     }
+    @Override
+    public List<Article> findAllWithComments() {
+        return this.articleDAO.findAllWithComments();
+    }
 
     @Override
     public void createArticle(final Article article) {

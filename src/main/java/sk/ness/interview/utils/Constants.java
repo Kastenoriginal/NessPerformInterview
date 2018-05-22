@@ -4,6 +4,7 @@ public class Constants {
 
     //region General constants
     public static final String NAME_SESSION_FACTORY = "sessionFactory";
+    public static final String FIND_ARTICLES_WITH_COMMENTS = "findArticlesWithComments";
     //endregion
 
     //region Table Columns
@@ -30,4 +31,5 @@ public class Constants {
     public static final String API_SEARCH_COMMENT = API_GET_COMMENTS + "/search/{searchText}";
     public static final String API_ADD_COMMENT = API_GET_COMMENTS + "/add";
     //endregion
+
 }

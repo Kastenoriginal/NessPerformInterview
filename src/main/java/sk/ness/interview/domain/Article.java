@@ -1,16 +1,16 @@
 package sk.ness.interview.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import sk.ness.interview.utils.Constants;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "articles")
 @SequenceGenerator(name = "articles_seq_store", sequenceName = "article_seq", allocationSize = 1)
+//@NamedQuery(name = Constants.FIND_ARTICLES_WITH_COMMENTS, query = "select distinct a from Article a left join a.comments")
+@NamedQuery(name = Constants.FIND_ARTICLES_WITH_COMMENTS, query = "select a from Article a")
 public class Article {
 
     public Article() {
@@ -35,7 +35,7 @@ public class Article {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTimestamp;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "articleId", fetch = FetchType.EAGER)
     private Set<Comment> comments;
 
     public Integer getId() {
@@ -78,7 +78,6 @@ public class Article {
         this.createTimestamp = createTimestamp;
     }
 
-    @JsonIgnore
     public Set<Comment> getComments() {
         return comments;
     }

@@ -31,7 +31,7 @@ public class BlogController {
 
     @RequestMapping(value = "articles", method = RequestMethod.GET)
     public List<Article> getAllArticles() {
-        return this.articleService.findAll();
+        return this.articleService.findAllWithComments();
     }
 
     @RequestMapping(value = "articles/{articleId}", method = RequestMethod.GET)
@@ -53,12 +53,20 @@ public class BlogController {
 
     @RequestMapping(value = "authors", method = RequestMethod.GET)
     public List<Author> getAllAuthors() {
+        List<Author> authors = this.authorService.findAll();
+        for (Author author : authors) {
+            System.out.println(author.getName());
+        }
         return this.authorService.findAll();
     }
 
     @RequestMapping(value = "authors/stats", method = RequestMethod.GET)
     public List<AuthorStats> authorStats() {
-        throw new UnsupportedOperationException("Author statistics not implemented.");
+        for (AuthorStats authorStats : this.authorService.fetchAllAuthorStats()) {
+            System.out.println(authorStats.getAuthorName());
+            System.out.println(authorStats.getArticleCount());
+        }
+        return this.authorService.fetchAllAuthorStats();
     }
 
     //region Comment

@@ -27,4 +27,7 @@ public interface ArticleService {
   /** Creates new {@link Article}s by ingesting all articles from json */
   void ingestArticles(String jsonArticles);
 
+  List<Article> findAllWithComments();
+
+
 }
